@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HAPPY BIRTHDAY MUMMA!</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to right,#ffdde1,#ee9ca7);
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+}
+
+/* Mom photo */
+img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    margin-bottom:12px;
+    z-index:3;
+}
+
+h1{
+    color:#d6336c;
+    z-index:3;
+    text-align:center;
+}
+
+/* floating items (hearts + text) */
+.float-item{
+    position:fixed;
+    bottom:-30px;
+    animation:floatUp 6s linear forwards;
+    z-index:1;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+/* message style */
+.message{
+    font-size:14px;
+    color:#c9184a;
+    background:rgba(255,255,255,0.7);
+    padding:4px 10px;
+    border-radius:12px;
+}
+
+/* heart style */
+.heart{
+    font-size:22px;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<img src="./mom.jpeg" alt="My Mom">
+
+<h1>💖 Happy Birthday Mumma 💖</h1>
+
+<script>
+
+// popup when page opens
+window.onload = function(){
+    alert("Happy Birthday Mumma ❤️\nThank you for always supporting me!\nLove you 💖");
+};
+
+// small messages to float
+const messages = [
+    "Best Mom Ever 💕",
+    "Love you MOM ❤️",
+    "You are my idol 🌸",
+    "Thank you for everything 💖",
+    "Happy Birthday 🎂",
+    "My strength 💪💗",
+    "Always grateful 🌼"
+];
+
+setInterval(function(){
+
+    const item = document.createElement("div");
+    item.classList.add("float-item");
+
+    // randomly choose heart or message
+    if(Math.random() < 0.5){
+        item.classList.add("heart");
+        item.innerHTML = "❤️";
+    }else{
+        item.classList.add("message");
+        item.innerHTML = messages[Math.floor(Math.random()*messages.length)];
+    }
+
+    item.style.left = Math.random() * 90 + "vw";
+
+    document.body.appendChild(item);
+
+    setTimeout(function(){
+        item.remove();
+    }, 6000);
+
+}, 500);
+
+</script>
+
+</body>
+</html>
